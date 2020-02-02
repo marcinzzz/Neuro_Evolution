@@ -16,7 +16,7 @@ public class Brain {
         for (int i = 0; i < input.length; i++) {
             float[] results = nn.feedForward(input[i]);
             for (int j = 0; j < results.length; j++) {
-                fitness += Math.abs(results[j] - output[i][j]);
+                fitness += Math.pow(Math.abs(results[j] - output[i][j]), 2);
             }
         }
     }

@@ -29,21 +29,10 @@ public class Population {
         for (int i = 0; i < POPULATION; i++) {
             if (POPULATION % 3 == 0)
                 brains.get(i).reset();
-            else {
+            else
                 brains.set(i, new Brain(brains.get(i / 3 * 3)));
-                brains.get(i).mutate();
-            }
+            brains.get(i).mutate();
         }
-//        brains.getFirst().reset();
-//        brains.getLast().reset();
-//        for (int i = 1; i < POPULATION / 2; i++) {
-//            brains.set(i, new Brain(brains.getFirst()));
-//            brains.get(i).mutate();
-//        }
-//        for (int i = POPULATION / 2; i < POPULATION - 1; i++) {
-//            brains.set(i, new Brain(brains.getLast()));
-//            brains.get(i).mutate();
-//        }
     }
 
     public void sort() {

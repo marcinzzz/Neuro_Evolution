@@ -127,7 +127,7 @@ class NeuralNetwork {
             for (int r = 0; r < data.length; r++) {
                 for (int c = 0; c < data[r].length; c++) {
                     if (random.nextFloat() < mutationRate)
-                        data[r][c] += random.nextFloat() - 0.5;
+                        data[r][c] += random.nextFloat() * 2 - 1;
                 }
             }
             weight = new Matrix(data);
@@ -137,7 +137,7 @@ class NeuralNetwork {
             for (int r = 0; r < data.length; r++) {
                 for (int c = 0; c < data[r].length; c++) {
                     if (random.nextFloat() < mutationRate)
-                        data[r][c] += random.nextFloat() - 0.5;
+                        data[r][c] += random.nextFloat() * 2 - 1;
                 }
             }
             bias = new Matrix(data);
