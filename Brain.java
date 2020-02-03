@@ -12,12 +12,10 @@ public class Brain {
         fitness = 0;
     }
 
-    public void test(float[][] input, float[][] output) {
-        for (int i = 0; i < input.length; i++) {
-            float[] results = nn.feedForward(input[i]);
-            for (int j = 0; j < results.length; j++) {
-                fitness += Math.pow(Math.abs(results[j] - output[i][j]), 2);
-            }
+    public void test(float[] input, float[] output) {
+        float[] results = nn.feedForward(input);
+        for (int j = 0; j < results.length; j++) {
+            fitness += Math.pow(Math.abs(results[j] - output[j]), 2);
         }
     }
 

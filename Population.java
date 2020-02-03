@@ -4,22 +4,18 @@ public class Population {
     private final int POPULATION;
 
     private LinkedList<Brain> brains;
-    private float[][] input;
-    private float[][] output;
     private float mutationRate;
 
-    public Population(int size, float[][] input, float[][] output, float mutationRate) {
+    public Population(int size, float mutationRate, int inputNodes, int[] hiddenNodes, int outputNodes) {
         this.POPULATION = size;
         this.brains = new LinkedList<>();
-        this.input = input;
-        this.output = output;
         this.mutationRate = mutationRate;
 
         for (int i = 0; i < POPULATION; i++)
-            brains.add(new Brain(new NeuralNetwork(2, new int[] {2}, 1, mutationRate)));
+            brains.add(new Brain(new NeuralNetwork(inputNodes, hiddenNodes, outputNodes, mutationRate)));
     }
 
-    public void test() {
+    public void test(float[] input, float[] output) {
         for (Brain brain : brains) {
             brain.test(input, output);
         }
