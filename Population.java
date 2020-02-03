@@ -4,15 +4,21 @@ public class Population {
     private final int POPULATION;
 
     private LinkedList<Brain> brains;
-    private float mutationRate;
 
     public Population(int size, float mutationRate, int inputNodes, int[] hiddenNodes, int outputNodes) {
         this.POPULATION = size;
         this.brains = new LinkedList<>();
-        this.mutationRate = mutationRate;
 
         for (int i = 0; i < POPULATION; i++)
             brains.add(new Brain(new NeuralNetwork(inputNodes, hiddenNodes, outputNodes, mutationRate)));
+    }
+
+    public Population(int size, float mutationRate, String directory) {
+        this.POPULATION = size;
+        this.brains = new LinkedList<>();
+
+        for (int i = 0; i < POPULATION; i++)
+            brains.add(new Brain(new NeuralNetwork(directory, mutationRate)));
     }
 
     public void test(float[] input, float[] output) {
@@ -27,7 +33,8 @@ public class Population {
                 brains.get(i).reset();
             else
                 brains.set(i, new Brain(brains.get(i / 3 * 3)));
-            brains.get(i).mutate();
+            if (i != 0)
+                brains.get(i).mutate();
         }
     }
 
@@ -37,6 +44,10 @@ public class Population {
                 return -1;
             return 1;
         });
+    }
+
+    public void exportLeader(String directory) {
+        brains.getFirst().getNn().export(directory);
     }
 
     public void print() {
